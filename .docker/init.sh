@@ -1,11 +1,10 @@
-#!/bin/bash
+#!/bin/sh
 
-#if [[ -z $USER || -z $PASSWD ]]; then echo "username and password mandatory"; exit -1 ; fi;
+if [[ -z "$KEY" ]]; then echo "key is mandatory"; exit 1 ; fi;
 
-#adduser --quiet --disabled-password --shell /bin/bash --home /home/$USER --gecos "User" $USER
-#echo "$USER:$PASSWD" | chpasswd
-
+echo $KEY >> /home/ssh/authorized_keys
 #service ssh start
-/app/ssh/sshd -f /app/ssh/sshd_config
+echo $PASSWD | sudo -u $USER --stdin
+/home/ssh/sshd -f /home/ssh/sshd_config
 
-ping localhost
+tail -f /dev/null
