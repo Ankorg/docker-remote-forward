@@ -2,10 +2,10 @@
 # See the sshd_config(5) manpage for details
 
 # What ports, IPs and protocols we listen for
-Port 8022
+#Port 8022
 # Use these options to restrict which interfaces/protocols sshd will bind to
-#ListenAddress ::
-#ListenAddress 0.0.0.0
+ListenAddress 0.0.0.0
+
 Protocol 2
 # HostKeys for protocol version 2
 HostKey /home/ssh/ssh_host_rsa_key
@@ -15,7 +15,7 @@ HostKey /home/ssh/ssh_host_dsa_key
 
 # Logging
 SyslogFacility AUTH
-LogLevel INFO
+LogLevel DEBUG
 
 # Authentication:
 LoginGraceTime 120
@@ -75,3 +75,4 @@ Subsystem sftp /usr/lib/openssh/sftp-server
 # PAM authentication, then enable this but set PasswordAuthentication
 # and ChallengeResponseAuthentication to 'no'.
 #UsePAM no
+UseDNS no
